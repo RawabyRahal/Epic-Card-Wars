@@ -25,7 +25,7 @@ export default {
   networks: {
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       chainId: 43113,
       accounts: [process.env.PRIVATE_KEY],
     },
