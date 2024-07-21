@@ -2,7 +2,7 @@ import React from 'react'
 import { PageHOC } from '../components';
 const CreateBattle = () => {
   return (
-    <div>CreateBattle</div>
+    <div className='text-white text-3xl'>CreateBattle</div>
   )
 }
 
