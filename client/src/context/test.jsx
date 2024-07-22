@@ -8,10 +8,7 @@ const Home = () => {
   const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
-    console.log("Contract and wallet address on mount:", {
-      contract,
-      walletAddress,
-    });
+    console.log({ contract, walletAddress });
   }, [contract, walletAddress]);
 
   const handleClick = async () => {
@@ -21,27 +18,25 @@ const Home = () => {
         return;
       }
 
-      console.log("Checking if player exists...");
       const playerExists = await contract.isPlayer(walletAddress);
+      console.log("playerExists:", playerExists);
 
-      if (!playerExists) {
-        await contract.registerPlayer(playerName, playerName, { gasLimit: 500000 });
-
-        // setShowAlert({
-        //   status: true,
-        //   type: 'info',
-        //   message: `${playerName} is being summoned!`,
-        // });
+      if (playerExists) {
         setShowAlert({
           status: true,
-          type: "info",
-          message: `Registering ${playerName}...`,
+          type: "failure",
+          message: `You're already registered`,
         });
+        return;
       }
 
-      // console.log("Registering player...");
+      await contract.registerPlayer(playerName, playerName);
+      setShowAlert({
+        status: true,
+        type: "info",
+        message: `Registering ${playerName}...`,
+      });
     } catch (error) {
-      console.error("Error in handleClick:", error);
       setShowAlert({
         status: true,
         type: "failure",
