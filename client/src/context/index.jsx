@@ -71,7 +71,7 @@ export const GlobalContextProvider = ({ children }) => {
         setUpdateGameData,
       });
     }
-  }, [contract, updateGameData]);
+  }, [contract]);
 
   useEffect(() => {
     if (showAlert?.status) {
@@ -94,22 +94,20 @@ export const GlobalContextProvider = ({ children }) => {
       );
 
       fetchedBattles.forEach((battle) => {
-        if (
-          battle.players.find(
-            (player) => player.toLowerCase() === walletAddress.toLowerCase()
-          )
-        ) {
-          if (battle.winner.startsWith("0x00")) {
+        if (battle.players.find((player) => player.toLowerCase() === walletAddress.toLowerCase())) {
+          if (battle.winner.startsWith('0x00')) {
             activeBattle = battle;
           }
         }
       });
+
       setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
       console.log({ fetchedBattles });
+      console.log({ pendingBattles });
     };
 
     if (contract) fetchGameData();
-  }, [contract]);
+  }, [contract, updateGameData]);
 
   return (
     <GlobalContext.Provider
