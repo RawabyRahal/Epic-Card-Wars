@@ -10,6 +10,13 @@ const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
   const navigate = useNavigate();
+  const [gameData, setGameData] = useState({
+    players: [],
+    pendingBattles: [],
+    activeBattle: null,
+  });
+  const [battleName, setBattleName] = useState(null);
+  const [updateGameData, setUpdateGameData] = useState(0);
   const [walletAddress, setWalletAddress] = useState("");
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
@@ -37,6 +44,7 @@ export const GlobalContextProvider = ({ children }) => {
     loadProvider();
   }, []);
 
+  // set smart contract, ptovider to the state
   useEffect(() => {
     if (provider && walletAddress) {
       const loadContract = async () => {
@@ -54,9 +62,16 @@ export const GlobalContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (contract) {
-      createEventListeners({navigate, contract, provider, walletAddress, setShowAlert });
+      createEventListeners({
+        navigate,
+        contract,
+        provider,
+        walletAddress,
+        setShowAlert,
+        setUpdateGameData,
+      });
     }
-  }, [contract]);
+  }, [contract, updateGameData]);
 
   useEffect(() => {
     if (showAlert?.status) {
@@ -67,9 +82,46 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [showAlert]);
 
+  // set the game data to the state
+  useEffect(() => {
+    const fetchGameData = async () => {
+      let activeBattle = null;
+
+      const fetchedBattles = await contract.getAllBattles();
+      // to show the pending games
+      const pendingBattles = fetchedBattles.filter(
+        (battle) => battle.battleStatus === 0
+      );
+
+      fetchedBattles.forEach((battle) => {
+        if (
+          battle.players.find(
+            (player) => player.toLowerCase() === walletAddress.toLowerCase()
+          )
+        ) {
+          if (battle.winner.startsWith("0x00")) {
+            activeBattle = battle;
+          }
+        }
+      });
+      setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
+      console.log({ fetchedBattles });
+    };
+
+    if (contract) fetchGameData();
+  }, [contract]);
+
   return (
     <GlobalContext.Provider
-      value={{ walletAddress, contract, showAlert, setShowAlert }}
+      value={{
+        walletAddress,
+        contract,
+        showAlert,
+        setShowAlert,
+        battleName,
+        setBattleName,
+        gameData,
+      }}
     >
       {children}
     </GlobalContext.Provider>
