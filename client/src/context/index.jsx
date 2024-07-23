@@ -3,10 +3,13 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { ABI, ADDRESS } from "../contract";
+import createEventListeners from "./createEventListeners";
+import { useNavigate } from "react-router-dom";
 
 const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [walletAddress, setWalletAddress] = useState("");
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
@@ -26,7 +29,9 @@ export const GlobalContextProvider = ({ children }) => {
         const accounts = await _provider.send("eth_requestAccounts", []);
         setWalletAddress(accounts[0]);
       } else {
-        console.error("Please install MetaMask!");
+        console.error(
+          "Please install a web3 wallet like MetaMask, Core Wallet, or any other supported wallet!"
+        );
       }
     };
     loadProvider();
@@ -48,9 +53,15 @@ export const GlobalContextProvider = ({ children }) => {
   }, [provider, walletAddress]);
 
   useEffect(() => {
+    if (contract) {
+      createEventListeners({navigate, contract, provider, walletAddress, setShowAlert });
+    }
+  }, [contract]);
+
+  useEffect(() => {
     if (showAlert?.status) {
       const timer = setTimeout(() => {
-        setShowAlert({ status: false, type: 'info', message: '' });
+        setShowAlert({ status: false, type: "info", message: "" });
       }, 5000);
       return () => clearTimeout(timer);
     }

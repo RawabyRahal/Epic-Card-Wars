@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { PageHOC, CustomInput, CustomButton } from "../components";
 import { useGlobalContext } from "../context";
-
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
   const { contract, walletAddress, setShowAlert } = useGlobalContext();
   const [playerName, setPlayerName] = useState("");
 
@@ -45,6 +46,17 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    const checkForPlayerToken = async () => {
+      const playerExists = await contract.isPlayer(walletAddress);
+      const playerTokenExists = await contract.isPlayerToken(walletAddress);
+      console.log({ playerExists, playerTokenExists });
+      if (playerExists && playerTokenExists) {
+        navigate("/create-battle");
+      }
+    };
+    if (contract) checkForPlayerToken();
+  }, [contract]);
   return (
     walletAddress && (
       <div className="flex flex-col">
