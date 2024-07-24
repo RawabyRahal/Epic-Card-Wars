@@ -17,6 +17,7 @@ export const GlobalContextProvider = ({ children }) => {
   });
   const [battleName, setBattleName] = useState(null);
   const [updateGameData, setUpdateGameData] = useState(0);
+  const [battleGround, setBattleGround] = useState("bg-astral");
   const [walletAddress, setWalletAddress] = useState("");
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
@@ -94,8 +95,12 @@ export const GlobalContextProvider = ({ children }) => {
       );
 
       fetchedBattles.forEach((battle) => {
-        if (battle.players.find((player) => player.toLowerCase() === walletAddress.toLowerCase())) {
-          if (battle.winner.startsWith('0x00')) {
+        if (
+          battle.players.find(
+            (player) => player.toLowerCase() === walletAddress.toLowerCase()
+          )
+        ) {
+          if (battle.winner.startsWith("0x00")) {
             activeBattle = battle;
           }
         }
@@ -119,6 +124,8 @@ export const GlobalContextProvider = ({ children }) => {
         battleName,
         setBattleName,
         gameData,
+        battleGround,
+        setBattleGround,
       }}
     >
       {children}

@@ -25,7 +25,7 @@ const JoinBattle = () => {
       console.log('playerBattles:', playerBattles);
 
       if (playerBattles.length > 0) {
-        setShowAlert({ status: true, type: 'error', message: 'You are already in a battle' });
+        setShowAlert({ status: true, type: 'failure', message: 'You are already in a battle' });
         return;
       }
 
@@ -36,9 +36,9 @@ const JoinBattle = () => {
     } catch (error) {
       console.error('Error:', error);
       if (error.code === -32603 && error.data && error.data.message.includes("Already in battle")) {
-        setShowAlert({ status: true, type: 'error', message: 'You are already in a battle' });
+        setShowAlert({ status: true, type: 'failure', message: 'You are already in a battle' });
       } else {
-        setShowAlert({ status: true, type: 'error', message: 'An error occurred while joining the battle' });
+        setShowAlert({ status: true, type: 'failure', message: 'An error occurred while joining the battle' });
       }
     }
   };
