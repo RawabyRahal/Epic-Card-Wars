@@ -58,8 +58,8 @@ const Battle = () => {
         const p2H = player02.playerHealth.toNumber();
         const p2M = player02.playerMana.toNumber();
 
-        setPlayer1({ ...player01, att: p1Att, def: p1Def, h: p1H, m: p1M });
-        setPlayer2({ ...player02, att: "X", def: "X", h: p1H, m: p1M });
+        setPlayer1({ ...player01, att: p1Att, def: p1Def, health: p1H, mana: p1M });
+        setPlayer2({ ...player02, att: "X", def: "X", health: p2H, mana: p2M });
       } catch (error) {
         console.error(error);
       }
@@ -94,7 +94,7 @@ const Battle = () => {
             cardRef=""
             restStyles="mt-3"
           />
-           <ActionButton
+          <ActionButton
             imgUrl={defense}
             handleClick={() => {}}
             restStyles="ml-6 hover:border-red-600"
@@ -102,7 +102,7 @@ const Battle = () => {
         </div>
       </div>
       <PlayerInfo player={player1} playerIcon={player01Icon} mt />
-      <GameInfo/>
+      <GameInfo />
     </div>
   );
 };
