@@ -7,7 +7,7 @@ import styles from "../styles";
 
 const CreateBattle = () => {
   const navigate = useNavigate();
-  const { contract, battleName, setBattleName, gameData } = useGlobalContext();
+  const { contract, battleName, setBattleName, gameData, setErrorMessage } = useGlobalContext();
   const [waitBattle, setWaitBattle] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const CreateBattle = () => {
       console.log('battle created successfully');
       setWaitBattle(true);
     } catch (error) {
-      console.error(error);
+      setErrorMessage(error);
     }
   };
   return (

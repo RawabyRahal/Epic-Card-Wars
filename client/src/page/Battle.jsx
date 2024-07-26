@@ -22,6 +22,7 @@ const Battle = () => {
     showAlert,
     setShowAlert,
     battleGround,
+    setErrorMessage,
   } = useGlobalContext();
   const [player2, setPlayer2] = useState({});
   const [player1, setPlayer1] = useState({});
@@ -69,7 +70,7 @@ const Battle = () => {
         });
         setPlayer2({ ...player02, att: "X", def: "X", health: p2H, mana: p2M });
       } catch (error) {
-        console.error(error);
+        setErrorMessage(error);
       }
     };
 
@@ -87,7 +88,7 @@ const Battle = () => {
         message: `Initiating ${choice === 1 ? "attack" : "defense"}`,
       });
     } catch (error) {
-      console.error(error);
+      setErrorMessage(error);
     }
   };
 

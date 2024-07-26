@@ -6,40 +6,50 @@ import { PageHOC, CustomButton } from "../components";
 
 const JoinBattle = () => {
   const navigate = useNavigate();
-  const { contract, gameData, setShowAlert, setBattleName, walletAddress } = useGlobalContext();
+  const {
+    contract,
+    gameData,
+    setShowAlert,
+    setBattleName,
+    walletAddress,
+    setErrorMessage,
+  } = useGlobalContext();
 
   const handleClick = async (battleName) => {
     setBattleName(battleName);
     console.log({ battleName, contract });
 
     // Log gameData and walletAddress to verify their values
-    console.log('gameData:', gameData);
-    console.log('walletAddress:', walletAddress);
+    console.log("gameData:", gameData);
+    console.log("walletAddress:", walletAddress);
 
     try {
       // Check if the player is already in a battle
-      const playerBattles = gameData.pendingBattles.filter((battle) => 
+      const playerBattles = gameData.pendingBattles.filter((battle) =>
         battle.players.includes(walletAddress)
       );
 
-      console.log('playerBattles:', playerBattles);
+      console.log("playerBattles:", playerBattles);
 
       if (playerBattles.length > 0) {
-        setShowAlert({ status: true, type: 'failure', message: 'You are already in a battle' });
+        setShowAlert({
+          status: true,
+          type: "failure",
+          message: "You are already in a battle",
+        });
         return;
       }
 
       await contract.joinBattle(battleName);
-      setShowAlert({ status: true, type: 'success', message: `Joining ${battleName}` });
+      setShowAlert({
+        status: true,
+        type: "success",
+        message: `Joining ${battleName}`,
+      });
 
       // navigate(`/battle/${battleName}`);
     } catch (error) {
-      console.error('Error:', error);
-      if (error.code === -32603 && error.data && error.data.message.includes("Already in battle")) {
-        setShowAlert({ status: true, type: 'failure', message: 'You are already in a battle' });
-      } else {
-        setShowAlert({ status: true, type: 'failure', message: 'An error occurred while joining the battle' });
-      }
+      setErrorMessage(error);
     }
   };
 

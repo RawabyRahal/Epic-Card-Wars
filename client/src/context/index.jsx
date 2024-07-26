@@ -25,6 +25,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
   const [step, setStep] = useState(1);
+  const [errorMessage, setErrorMessage] = useState("");
   const [showAlert, setShowAlert] = useState({
     status: false,
     type: "info",
@@ -92,7 +93,9 @@ export const GlobalContextProvider = ({ children }) => {
 
       const fetchedBattles = await contract.getAllBattles();
       // to show the pending games
-      const pendingBattles = fetchedBattles.filter((battle) => battle.battleStatus === 0);
+      const pendingBattles = fetchedBattles.filter(
+        (battle) => battle.battleStatus === 0
+      );
 
       fetchedBattles.forEach((battle) => {
         if (
@@ -145,6 +148,24 @@ export const GlobalContextProvider = ({ children }) => {
       });
     }
   }, [contract, step]);
+
+  //* Handle error messages
+  useEffect(() => {
+    if (errorMessage) {
+      const parsedErrorMessage = errorMessage?.reason
+        ?.slice("execution reverted: ".length)
+        .slice(0, -1);
+
+      if (parsedErrorMessage) {
+        setShowAlert({
+          status: true,
+          type: "failure",
+          message: parsedErrorMessage,
+        });
+      }
+    }
+  }, [errorMessage]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -157,6 +178,8 @@ export const GlobalContextProvider = ({ children }) => {
         gameData,
         battleGround,
         setBattleGround,
+        errorMessage,
+        setErrorMessage,
         updateCurrentWalletAddress,
       }}
     >
