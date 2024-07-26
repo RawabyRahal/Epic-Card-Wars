@@ -11,7 +11,10 @@ const CreateBattle = () => {
   const [waitBattle, setWaitBattle] = useState(false);
 
   useEffect(() => {
-    if (gameData?.activeBattle?.battleStatus === 0) {
+    if(gameData?.activeBattle?.battleStatus === 1) {
+      navigate(`/battle/${gameData.activeBattle.name}`);
+    }
+   else if (gameData?.activeBattle?.battleStatus === 0) {
       setWaitBattle(true);
     }
   }, [gameData])

@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import { ABI, ADDRESS } from "../contract";
 import createEventListeners from "./createEventListeners";
 import { useNavigate } from "react-router-dom";
-
+import { GetParams } from '../utils/onboard.js';
 const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
@@ -17,10 +17,14 @@ export const GlobalContextProvider = ({ children }) => {
   });
   const [battleName, setBattleName] = useState(null);
   const [updateGameData, setUpdateGameData] = useState(0);
-  const [battleGround, setBattleGround] = useState("bg-astral");
+  // const [battleGround, setBattleGround] = useState();
+  const [battleGround, setBattleGround] = useState(
+    localStorage.getItem("battleground") || "bg-astral"
+  );
   const [walletAddress, setWalletAddress] = useState("");
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
+  const [step, setStep] = useState(1);
   const [showAlert, setShowAlert] = useState({
     status: false,
     type: "info",
@@ -61,18 +65,7 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [provider, walletAddress]);
 
-  useEffect(() => {
-    if (contract) {
-      createEventListeners({
-        navigate,
-        contract,
-        provider,
-        walletAddress,
-        setShowAlert,
-        setUpdateGameData,
-      });
-    }
-  }, [contract]);
+ 
 
   useEffect(() => {
     if (showAlert?.status) {
@@ -114,6 +107,36 @@ export const GlobalContextProvider = ({ children }) => {
     if (contract) fetchGameData();
   }, [contract, updateGameData]);
 
+  // set the battle ground to local storage
+  useEffect(() => {
+    if (battleGround) {
+      localStorage.setItem("battleground", battleGround);
+    }
+  }, [battleGround]);
+
+  //* Reset web3 onboarding modal params
+  useEffect(() => {
+    const resetParams = async () => {
+      const currentStep = await GetParams();
+      setStep(currentStep.step);
+    };
+    resetParams();
+    window?.ethereum?.on('chainChanged', () => resetParams());
+    window?.ethereum?.on('accountsChanged', () => resetParams());
+  }, []);
+
+  useEffect(() => {
+    if ((step !== -1) && contract) {
+      createEventListeners({
+        navigate,
+        contract,
+        provider,
+        walletAddress,
+        setShowAlert,
+        setUpdateGameData,
+      });
+    }
+  }, [contract, step]);
   return (
     <GlobalContext.Provider
       value={{

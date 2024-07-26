@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "../components";
 import { battlegrounds } from "../assets";
@@ -10,16 +10,27 @@ const Battleground = () => {
   const { showAlert, setShowAlert, setBattleGround } = useGlobalContext();
 
   const handleBattleChoice = (ground) => {
-    setBattleGround(ground.id)
+    setBattleGround(ground.id);
 
-    // if the user reload the page, need to keep track of the battleGround he chose 
-    localStorage.setItem("battleGround", ground.id);
+    // Save the selected battleground to localStorage
+    localStorage.setItem('battleground', ground.id);
     setShowAlert({ status: true, type: 'info', message: `${ground.name} is battle ready!` });
 
     setTimeout(() => {
-        navigate(-1)
-    }, 1000)
+      navigate(-1);
+    }, 1000);
   };
+
+  useEffect(() => {
+    // Retrieve the saved battleground from localStorage on component mount
+    const savedBattleGround = localStorage.getItem('battleground');
+    if (savedBattleGround) {
+      console.log(`Retrieved battleground from localStorage: ${savedBattleGround}`);
+      setBattleGround(savedBattleGround);
+    } else {
+      console.log('No battleground found in localStorage');
+    }
+  }, [setBattleGround]);
 
   return (
     <div className={`${styles.flexCenter} ${styles.battlegroundContainer}`}>
@@ -47,7 +58,7 @@ const Battleground = () => {
             />
 
             <div className="info absolute">
-                <p className={styles.battleGroundCardText}>{ground.name}</p>
+              <p className={styles.battleGroundCardText}>{ground.name}</p>
             </div>
           </div>
         ))}
