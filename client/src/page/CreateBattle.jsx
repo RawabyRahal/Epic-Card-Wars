@@ -20,10 +20,11 @@ const CreateBattle = () => {
   }, [gameData])
   
   const handleClick = async () => {
-    if (!battleName || !battleName.trim()) return null;
+    if (battleName === '' || battleName.trim() === '') return null;
 
     try {
       await contract.createBattle(battleName);
+      console.log('battle created successfully');
       setWaitBattle(true);
     } catch (error) {
       console.error(error);

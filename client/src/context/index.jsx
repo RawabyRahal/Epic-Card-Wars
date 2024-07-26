@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import { ABI, ADDRESS } from "../contract";
 import createEventListeners from "./createEventListeners";
 import { useNavigate } from "react-router-dom";
-import { GetParams } from '../utils/onboard.js';
+import { GetParams } from "../utils/onboard.js";
 const GlobalContext = createContext();
 
 export const GlobalContextProvider = ({ children }) => {
@@ -33,20 +33,31 @@ export const GlobalContextProvider = ({ children }) => {
 
   console.log({ contract, walletAddress });
 
+  const updateCurrentWalletAddress = async () => {
+    if (window.ethereum) {
+      const _provider = new ethers.providers.Web3Provider(window.ethereum);
+      setProvider(_provider);
+      const accounts = await _provider.send("eth_requestAccounts", []);
+      setWalletAddress(accounts[0]);
+    } else {
+      console.error(
+        "Please install a web3 wallet like MetaMask, Core Wallet, or any other supported wallet!"
+      );
+    }
+  };
+
   useEffect(() => {
-    const loadProvider = async () => {
-      if (window.ethereum) {
-        const _provider = new ethers.providers.Web3Provider(window.ethereum);
-        setProvider(_provider);
-        const accounts = await _provider.send("eth_requestAccounts", []);
+    updateCurrentWalletAddress();
+
+    const handleAccountsChanged = (accounts) => {
+      if (accounts.length > 0) {
         setWalletAddress(accounts[0]);
-      } else {
-        console.error(
-          "Please install a web3 wallet like MetaMask, Core Wallet, or any other supported wallet!"
-        );
       }
     };
-    loadProvider();
+    window.ethereum?.on("accountsChanged", handleAccountsChanged);
+    return () => {
+      window.ethereum?.removeListener("accountsChanged", handleAccountsChanged);
+    };
   }, []);
 
   // set smart contract, ptovider to the state
@@ -65,8 +76,6 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [provider, walletAddress]);
 
- 
-
   useEffect(() => {
     if (showAlert?.status) {
       const timer = setTimeout(() => {
@@ -83,9 +92,7 @@ export const GlobalContextProvider = ({ children }) => {
 
       const fetchedBattles = await contract.getAllBattles();
       // to show the pending games
-      const pendingBattles = fetchedBattles.filter(
-        (battle) => battle.battleStatus === 0
-      );
+      const pendingBattles = fetchedBattles.filter((battle) => battle.battleStatus === 0);
 
       fetchedBattles.forEach((battle) => {
         if (
@@ -121,12 +128,12 @@ export const GlobalContextProvider = ({ children }) => {
       setStep(currentStep.step);
     };
     resetParams();
-    window?.ethereum?.on('chainChanged', () => resetParams());
-    window?.ethereum?.on('accountsChanged', () => resetParams());
+    window?.ethereum?.on("chainChanged", () => resetParams());
+    window?.ethereum?.on("accountsChanged", () => resetParams());
   }, []);
 
   useEffect(() => {
-    if ((step !== -1) && contract) {
+    if (step !== -1 && contract) {
       createEventListeners({
         navigate,
         contract,
@@ -134,6 +141,7 @@ export const GlobalContextProvider = ({ children }) => {
         walletAddress,
         setShowAlert,
         setUpdateGameData,
+        updateCurrentWalletAddress,
       });
     }
   }, [contract, step]);
@@ -149,6 +157,7 @@ export const GlobalContextProvider = ({ children }) => {
         gameData,
         battleGround,
         setBattleGround,
+        updateCurrentWalletAddress,
       }}
     >
       {children}

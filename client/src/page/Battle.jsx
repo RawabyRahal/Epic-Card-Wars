@@ -49,6 +49,8 @@ const Battle = () => {
         const player01 = await contract.getPlayer(player01Address);
         const player02 = await contract.getPlayer(player02Address);
 
+        console.log(p1TokenData);
+
         const p1Att = p1TokenData.attackStrength.toNumber();
         const p1Def = p1TokenData.defenseStrength.toNumber();
 
@@ -58,7 +60,13 @@ const Battle = () => {
         const p2H = player02.playerHealth.toNumber();
         const p2M = player02.playerMana.toNumber();
 
-        setPlayer1({ ...player01, att: p1Att, def: p1Def, health: p1H, mana: p1M });
+        setPlayer1({
+          ...player01,
+          att: p1Att,
+          def: p1Def,
+          health: p1H,
+          mana: p1M,
+        });
         setPlayer2({ ...player02, att: "X", def: "X", health: p2H, mana: p2M });
       } catch (error) {
         console.error(error);
@@ -67,6 +75,21 @@ const Battle = () => {
 
     if (contract && gameData.activeBattle) getPlayerInfo();
   }, [contract, gameData, battleName]);
+
+  const makeAMove = async (choice) => {
+    playAudio(choice === 1 ? attackSound : defenseSound);
+
+    try {
+      await contract.attackOrDefendChoice(choice, battleName);
+      setShowAlert({
+        status: true,
+        type: "info",
+        message: `Initiating ${choice === 1 ? "attack" : "defense"}`,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div
@@ -85,7 +108,7 @@ const Battle = () => {
         <div className="flex items-center flex-row">
           <ActionButton
             imgUrl={attack}
-            handleClick={() => {}}
+            handleClick={() => makeAMove(1)}
             restStyles="mr-2 hover:border-yellow-400"
           />
           <Card
@@ -96,7 +119,7 @@ const Battle = () => {
           />
           <ActionButton
             imgUrl={defense}
-            handleClick={() => {}}
+            handleClick={() => makeAMove(2)}
             restStyles="ml-6 hover:border-red-600"
           />
         </div>

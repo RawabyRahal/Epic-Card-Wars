@@ -29,7 +29,7 @@ const createEventListeners = ({ navigate, contract, provider, walletAddress, set
 
     const NewBattleEventFilter = contract.filters.NewBattle();
     AddNewEvent(NewBattleEventFilter, provider, ({ args }) => {
-        console.log({args})
+        console.log({ args })
         console.log('New battle started!', args, walletAddress);
 
         if (walletAddress.toLowerCase() === args.player1.toLowerCase() || walletAddress.toLowerCase() === args.player2.toLowerCase()) {
@@ -38,6 +38,13 @@ const createEventListeners = ({ navigate, contract, provider, walletAddress, set
 
         setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
     });
+
+    
+    const BattleMoveEventFilter = contract.filters.BattleMove();
+    AddNewEvent(BattleMoveEventFilter, provider, ({ args }) => {
+        console.log('Battle move initiated!', args);
+    });
+
 }
 
 export default createEventListeners
