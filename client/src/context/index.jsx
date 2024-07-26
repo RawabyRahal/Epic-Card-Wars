@@ -1,5 +1,6 @@
 // context.js
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useRef } from "react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { ABI, ADDRESS } from "../contract";
@@ -31,6 +32,9 @@ export const GlobalContextProvider = ({ children }) => {
     type: "info",
     message: "",
   });
+
+  const player1Ref = useRef();
+  const player2Ref = useRef();
 
   console.log({ contract, walletAddress });
 
@@ -145,6 +149,8 @@ export const GlobalContextProvider = ({ children }) => {
         setShowAlert,
         setUpdateGameData,
         updateCurrentWalletAddress,
+        player1Ref,
+        player2Ref,
       });
     }
   }, [contract, step]);
