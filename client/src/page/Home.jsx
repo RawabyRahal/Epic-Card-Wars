@@ -5,7 +5,7 @@ import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
-  const { contract, walletAddress, setShowAlert } = useGlobalContext();
+  const { contract, walletAddress, setShowAlert, gameData, setErrorMessage } = useGlobalContext();
   const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
@@ -31,18 +31,14 @@ const Home = () => {
         return;
       }
 
-      await contract.registerPlayer(playerName, playerName);
+      await contract.registerPlayer(playerName, playerName, { gasLimit: 200000 });
       setShowAlert({
         status: true,
         type: "info",
         message: `Registering ${playerName}...`,
       });
     } catch (error) {
-      setShowAlert({
-        status: true,
-        type: "failure",
-        message: `${error.message}`,
-      });
+      setErrorMessage(error);
     }
   };
 
@@ -57,6 +53,13 @@ const Home = () => {
     };
     if (contract) checkForPlayerToken();
   }, [contract]);
+
+  useEffect(() => {
+    if (gameData.activeBattle) {
+      navigate(`/battle/${gameData.activeBattle.name}`);
+    }
+  }, [gameData]);
+
   return (
     walletAddress && (
       <div className="flex flex-col">
