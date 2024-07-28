@@ -1,5 +1,5 @@
 # NFT-game
 <br>
 
-### Status
-#### In progress... 🚧
+## Status
+### In progress... 🚧
