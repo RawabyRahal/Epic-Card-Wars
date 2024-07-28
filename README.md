@@ -1,4 +1,4 @@
-# NFT-game
+# NFT-Game
 
 
 ### In progress... 🚧
