@@ -24,7 +24,6 @@ const JoinBattle = () => {
     setBattleName(battleName);
     console.log({ battleName, contract });
 
-    // Log gameData and walletAddress to verify their values
     console.log("gameData:", gameData);
     console.log("walletAddress:", walletAddress);
 
