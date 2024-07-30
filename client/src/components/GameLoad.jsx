@@ -7,7 +7,9 @@ import styles from "../styles";
 const GameLoad = () => {
   const { walletAddress } = useGlobalContext();
   const navigate = useNavigate();
-
+  const shortenAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
   return (
     <div className={`${styles.flexBetween} ${styles.gameLoadContainer}`}>
       <div className={styles.gameLoadBtnBox}>
@@ -30,13 +32,13 @@ const GameLoad = () => {
           <div className={`${styles.flexCenter} flex-col`}>
             <img src={player01} className={styles.gameLoadPlayerImg} />
             <p className={styles.gameLoadPlayerText}>
-              {walletAddress.slice(0, 30)}
+              {shortenAddress(walletAddress).slice(0, 30)}
             </p>
           </div>
           <h2 className={styles.gameLoadVS}>Vs</h2>
           <div className={`${styles.flexCenter} flex-col`}>
             <img src={player02} className={styles.gameLoadPlayerImg} />
-            <p className={styles.gameLoadPlayerText}>??????????????????????????????</p>
+            <p className={styles.gameLoadPlayerText}>0x????...????</p>
           </div>
         </div>
       </div>
