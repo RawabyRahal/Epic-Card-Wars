@@ -4,7 +4,8 @@ import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
-  const { contract, walletAddress, setShowAlert, gameData, setErrorMessage } = useGlobalContext();
+  const { contract, walletAddress, setShowAlert, gameData, setErrorMessage } =
+    useGlobalContext();
   const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
@@ -30,7 +31,9 @@ const Home = () => {
         return;
       }
 
-      await contract.registerPlayer(playerName, playerName, { gasLimit: 200000 });
+      await contract.registerPlayer(playerName, playerName, {
+        gasLimit: 200000,
+      });
       setShowAlert({
         status: true,
         type: "info",
@@ -81,11 +84,12 @@ const Home = () => {
 
 export default PageHOC(
   Home,
+  <div>
+    Welcome to <span style={{ color: "#7f46f0", fontSize: "5rem"}}>Epic Card Wars</span> <br />{" "}
+    <span style={{ fontSize: "3rem" }}>a Web3 NFT Card Game</span>
+  </div>,
   <>
-    Welcome to Avalanche Legends <br /> a Web3 NFT Card Game
-  </>,
-  <>
-    Connect your wallet to start playing <br /> the ultimate Web3 Battle Card
-    Game
+    Connect your wallet and jump into the exciting world of <br />
+    the ultimate Web3 Battle Card Game
   </>
 );

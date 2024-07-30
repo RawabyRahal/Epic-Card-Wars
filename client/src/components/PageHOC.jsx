@@ -17,6 +17,7 @@ const PageHOC = (Component, title, description) => () => {
           alt="logo"
           className={styles.hocLogo}
           onClick={() => navigate("/")}
+          title="Back to Home"
         />
         <div className={styles.hocBodyWrapper}>
           <div className="flex flex-row w-full">
@@ -31,7 +32,7 @@ const PageHOC = (Component, title, description) => () => {
       </div>
 
       <div className="flex flex-1">
-        <img src={heroImg} alt="hero-img" className="w-full xl:h-full object-cover" />
+        <img src={heroImg} alt="hero-img" className="w-full h-full " />
       </div>
     </div>
   );

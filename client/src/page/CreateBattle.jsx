@@ -59,5 +59,5 @@ export default PageHOC(
   <>
     Create <br /> a new Battle
   </>,
-  <>Create your own battle and wait for other players to join you</>
+  <>Launch your battle and hold on as other players come to join you</>
 );

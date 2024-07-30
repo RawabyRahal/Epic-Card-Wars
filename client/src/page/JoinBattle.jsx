@@ -95,5 +95,5 @@ export default PageHOC(
   <>
     Join <br /> a Battle
   </>,
-  <>Join already existing battles</>
+  <>Jump into active battles</>
 );
