@@ -1,4 +1,4 @@
-# NFT-Game
+# Epic Card Wars
 
 
 ### In progress... 🚧
