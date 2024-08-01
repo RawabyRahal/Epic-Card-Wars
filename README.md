@@ -1,4 +1,4 @@
-# Epic Card Wars - ECW
+# Epic Card Wars
 
 
 ### In progress... 🚧
