@@ -4,6 +4,7 @@ import astral from './background/astral.jpg';
 import eoaalien from './background/eoaalien.jpg';
 import panight from './background/panight.jpg';
 import heroImg from './background/hero-img.jpg';
+import stone from './background/stone.jpg';
 
 // cards
 import ace from './Ace.png';
@@ -94,6 +95,7 @@ export {
   eoaalien,
   panight,
   heroImg,
+  stone,
 
   ace,
   bakezori,
@@ -146,6 +148,7 @@ export const battlegrounds = [
   { id: 'bg-astral', image: astral, name: 'Astral' },
   { id: 'bg-eoaalien', image: eoaalien, name: 'Eoaalien' },
   { id: 'bg-panight', image: panight, name: 'Panight' },
+  { id: 'bg-stone', image: stone, name: 'Stone' },
 ];
 
 export const gameRules = [

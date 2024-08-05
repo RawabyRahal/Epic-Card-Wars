@@ -11,7 +11,7 @@ const Battleground = () => {
 
   const handleBattleChoice = (ground) => {
     setBattleGround(ground.id);
-
+    console.log(ground.id);
     // Save the selected battleground to localStorage
     localStorage.setItem('battleground', ground.id);
     setShowAlert({ status: true, type: 'info', message: `${ground.name} is battle ready!` });
