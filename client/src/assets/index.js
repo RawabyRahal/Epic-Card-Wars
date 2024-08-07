@@ -5,6 +5,7 @@ import eoaalien from './background/eoaalien.jpg';
 import panight from './background/panight.jpg';
 import heroImg from './background/hero-img.jpg';
 import stone from './background/stone.jpg';
+import arena from './background/arena.jpg';
 
 // cards
 import ace from './Ace.png';
@@ -96,6 +97,7 @@ export {
   panight,
   heroImg,
   stone,
+  arena,
 
   ace,
   bakezori,
@@ -149,6 +151,7 @@ export const battlegrounds = [
   { id: 'bg-eoaalien', image: eoaalien, name: 'Eoaalien' },
   { id: 'bg-panight', image: panight, name: 'Panight' },
   { id: 'bg-stone', image: stone, name: 'Stone' },
+  { id: 'bg-arena', image: arena, name: 'Arena' },
 ];
 
 export const gameRules = [
