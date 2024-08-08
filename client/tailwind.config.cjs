@@ -16,6 +16,8 @@ module.exports = {
         panight: "url('/src/assets/background/panight.jpg')",
         stone: "url('/src/assets/background/stone.jpg')",
         arena: "url('/src/assets/background/arena.jpg')",
+        ancient: "url('/src/assets/background/ancient.jpg')",
+        dollar: "url('/src/assets/background/dollar.jpg')",
         heroImg: "url('/src/assets/background/hero-img.jpg')",
         landing: "url('/src/assets/background/landing.jpg')",
       },

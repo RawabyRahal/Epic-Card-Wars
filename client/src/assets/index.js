@@ -6,6 +6,9 @@ import panight from './background/panight.jpg';
 import heroImg from './background/hero-img.jpg';
 import stone from './background/stone.jpg';
 import arena from './background/arena.jpg';
+import ancient from './background/ancient.jpg';
+import dollar from './background/dollar.jpg';
+
 
 // cards
 import ace from './Ace.png';
@@ -152,6 +155,9 @@ export const battlegrounds = [
   { id: 'bg-panight', image: panight, name: 'Panight' },
   { id: 'bg-stone', image: stone, name: 'Stone' },
   { id: 'bg-arena', image: arena, name: 'Arena' },
+  { id: 'bg-ancient', image: ancient, name: 'Ancient' },
+  { id: 'bg-dollar', image: dollar, name: 'Dollar' },
+
 ];
 
 export const gameRules = [
