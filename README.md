@@ -1,3 +1,3 @@
 # Epic Card Wars
-welcome to ECW
+#### welcome to ECW!
 ### In progress... 🚧
