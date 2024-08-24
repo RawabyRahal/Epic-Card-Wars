@@ -76,5 +76,6 @@ Deploy the smart contract on the Fuji test network:
 1. Navigate to the "Create Battle" page.
 2. Enter a unique battle name.
 3. Click "Create" to initialize the battle on the blockchain.
+<br>
 
 ### Join the battle and make your mark in the world of Web3 gaming – the adventure starts now!
