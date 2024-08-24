@@ -44,7 +44,7 @@ const Battleground = () => {
         Ground
       </h1>
 
-      <div className={`${styles.flexCenter} ${styles.battleGroundsWrapper}`}>
+      <div className={`${styles.flexCenter} ${styles.battleGroundsWrapper} max-h-[500px] overflow-y-auto p-8`}>
         {battlegrounds.map((ground) => (
           <div
             key={ground.id}
