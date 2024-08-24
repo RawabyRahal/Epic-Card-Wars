@@ -19,5 +19,64 @@ A decentralized strategic card game where players engage in battles using a vari
 - **[React Hooks](https://react.dev/reference/react):** Functions that let you use state and other React features without writing a class.
 - **[React Context API](https://react.dev/reference/react/Context):** A feature that allows you to manage and share state across your application without prop drilling.
 
-### In progress... 🚧
+
+# Getting Started
+# To get a local copy up and running, follow these simple steps.
+
+# Prerequisites
+# Make sure you have the following installed:
+
+# Node.js: Download and install Node.js
+# Visit https://nodejs.org/ for installation instructions
+
+# MetaMask: Download MetaMask
+# Visit https://metamask.io/ to install the MetaMask browser extension
+
+# Installation
+# Clone the repository:
+git clone https://github.com/yourusername/web3-battle-game.git
+
+# Navigate to the project directory:
+cd web3-battle-game
+
+# Install dependencies:
+npm install
+
+# Deployment
+# Deploy the smart contracts to your desired Ethereum testnet (e.g., Sepolia):
+
+# Compile the contracts:
+npx hardhat compile
+
+# Deploy the contracts:
+npx hardhat run scripts/deploy.js --network sepolia
+
+# Usage
+# Start the development server:
+npm start
+
+# Open your browser and navigate to http://localhost:3000 to start playing.
+# Connect your MetaMask wallet to interact with the game on the Ethereum network.
+
+Copy code
+npm install
+Deployment
+Deploy the smart contracts to your desired Ethereum testnet (e.g., Sepolia):
+
+Compile the contracts:
+bash
+Copy code
+npx hardhat compile
+Deploy the contracts:
+bash
+Copy code
+npx hardhat run scripts/deploy.js --network sepolia
+Usage
+Start the development server:
+bash
+Copy code
+npm start
+Open your browser and navigate to http://localhost:3000 to start playing.
+Connect your MetaMask wallet to interact with the game on the Ethereum network.
+
 
