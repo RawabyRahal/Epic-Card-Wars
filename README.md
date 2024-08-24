@@ -20,7 +20,7 @@ A decentralized strategic card game where players engage in battles using a vari
 - **[React Context API](https://react.dev/reference/react/Context):** A feature that allows you to manage and share state across your application without prop drilling.
 
 
-# Getting Started
+### Getting Started
 # To get a local copy up and running, follow these simple steps.
 
 # Prerequisites
