@@ -29,7 +29,7 @@ Make sure you have the following installed:
 - **[Node.js](https://nodejs.org/):** Download and install Node.js 
 - **[MetaMask](https://metamask.io/):** Download MetaMask
 
-# Installation
+#### Installation
 # Clone the repository:
 git clone https://github.com/yourusername/web3-battle-game.git
 
