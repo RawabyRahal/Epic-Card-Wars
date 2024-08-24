@@ -19,6 +19,7 @@ A decentralized strategic card game where players engage in battles using a vari
 - **[React Hooks](https://react.dev/reference/react):** Functions that let you use state and other React features without writing a class.
 - **[React Context API](https://react.dev/reference/react/Context):** A feature that allows you to manage and share state across your application without prop drilling.
 
+<br>
 
 ### Getting Started
 To get a local copy up and running, follow these simple steps.
