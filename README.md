@@ -23,7 +23,7 @@ A decentralized strategic card game where players engage in battles using a vari
 ### Getting Started
 To get a local copy up and running, follow these simple steps.
 
-# Prerequisites
+#### Prerequisites
 # Make sure you have the following installed:
 
 # Node.js: Download and install Node.js
