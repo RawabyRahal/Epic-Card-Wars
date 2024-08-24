@@ -43,17 +43,15 @@ Make sure you have the following installed:
 3. Install dependencies:
    
    ```bash
-      npm install
+   npm install
 
-# Deployment
-# Deploy the smart contracts to your desired Ethereum testnet (e.g., Sepolia):
+#### Deployment
+Deploy the smart contract on the Fuji test network:
 
-# Compile the contracts:
-npx hardhat compile
+### -**Compile the contracts:** npx hardhat compile
 
 # Deploy the contracts:
-npx hardhat run scripts/deploy.js --network sepolia
-
+npx hardhat run scripts/deploy.ts --network fuji
 # Usage
 # Start the development server:
 npm start
