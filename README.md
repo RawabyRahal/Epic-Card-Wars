@@ -10,7 +10,7 @@ Health & Mana Management: Each player has HP and Mana, which must be managed car
 Dynamic Card Effects: Each card has unique effects, adding depth and strategy to gameplay.
 Responsive UI: Built with a responsive design to ensure smooth gameplay across devices
 
-# Technologies Used 🛠
+### Technologies Used 🛠
 
 # Frontend
 React="https://react.dev/"
