@@ -30,14 +30,20 @@ Make sure you have the following installed:
 - **[MetaMask](https://metamask.io/):** Download MetaMask
 
 #### Installation
-# Clone the repository:
-git clone https://github.com/yourusername/web3-battle-game.git
+1. Clone the repository:
 
-# Navigate to the project directory:
-cd web3-battle-game
+   ```bash
+   git clone https://github.com/yourusername/web3-battle-game.git
 
-# Install dependencies:
-npm install
+2. Navigate to the project directory:
+   
+   ```bash
+   cd web3-battle-game
+
+3. Install dependencies:
+   
+   ```bash
+      npm install
 
 # Deployment
 # Deploy the smart contracts to your desired Ethereum testnet (e.g., Sepolia):
