@@ -48,7 +48,7 @@ Make sure you have the following installed:
 #### Deployment
 Deploy the smart contract on the Fuji test network:
 
-### -**Compile the contracts:** npx hardhat compile
+-**Compile the contracts:** npx hardhat compile
 
 # Deploy the contracts:
 npx hardhat run scripts/deploy.ts --network fuji
