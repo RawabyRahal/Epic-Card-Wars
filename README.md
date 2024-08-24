@@ -32,7 +32,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/web3-battle-game.git
+   https://github.com/RawabyRahal/Epic-Card-Wars.git
 
 2. Navigate to the project directory:
    
