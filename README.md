@@ -28,9 +28,7 @@ Make sure you have the following installed:
 
 - **[Node.js](https://nodejs.org/):** Download and install Node.js 
 
-- **MetaMask:** Download MetaMask
-
-Visit https://metamask.io/ to install the MetaMask browser extension
+- **[MetaMask](https://metamask.io/):** Download MetaMask
 
 # Installation
 # Clone the repository:
