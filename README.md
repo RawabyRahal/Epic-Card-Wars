@@ -65,6 +65,6 @@ Deploy the smart contract on the Fuji test network:
    npm start
 
 2. Open your browser and navigate to `http://localhost:5173/` to start playing.
-3. Connect your MetaMask wallet to interact with the game on the Fuji network.
+3. Connect your MetaMask or Core wallet to interact with the game on the Fuji network.
 
 
