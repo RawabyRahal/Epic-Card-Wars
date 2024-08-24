@@ -65,6 +65,15 @@ Deploy the smart contract on the Fuji test network:
 
 2. Open your browser and navigate to `http://localhost:5173/` to start playing.
 3. Connect your MetaMask or Core wallet to interact with the game on the Fuji network.
+4. Join a Battle
+Connect your Ethereum wallet using MetaMask or any supported wallet.
+View the available battles on the "Join Battle" page.
+Click "Join" to participate in a battle.
+Once joined, navigate to the battleground to start playing.
+Create a Battle
+Navigate to the "Create Battle" page.
+Enter a unique battle name.
+Click "Create" to initialize the battle on the blockchain.
 <br>
 
 ### Join the battle and make your mark in the world of Web3 gaming – the adventure starts now!
