@@ -49,40 +49,22 @@ Make sure you have the following installed:
 Deploy the smart contract on the Fuji test network:
 
 1. Compile the contracts:
+   
    ```bash
    npx hardhat compile
 
-2. Deploy the contracts:
+3. Deploy the contracts:
+   
    ```bash
    npx hardhat run scripts/deploy.ts --network fuji
 
+#### Usage
+1. Start the development server:
    
-# Usage
-# Start the development server:
-npm start
+   ```bash
+   npm start
 
-# Open your browser and navigate to http://localhost:3000 to start playing.
-# Connect your MetaMask wallet to interact with the game on the Ethereum network.
-
-Copy code
-npm install
-Deployment
-Deploy the smart contracts to your desired Ethereum testnet (e.g., Sepolia):
-
-Compile the contracts:
-bash
-Copy code
-npx hardhat compile
-Deploy the contracts:
-bash
-Copy code
-npx hardhat run scripts/deploy.js --network sepolia
-Usage
-Start the development server:
-bash
-Copy code
-npm start
-Open your browser and navigate to http://localhost:3000 to start playing.
-Connect your MetaMask wallet to interact with the game on the Ethereum network.
+2. Open your browser and navigate to http://localhost:3000 to start playing.
+3. Connect your MetaMask wallet to interact with the game on the Fuji network.
 
 
