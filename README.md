@@ -26,10 +26,10 @@ To get a local copy up and running, follow these simple steps.
 #### Prerequisites
 Make sure you have the following installed:
 
-# Node.js: Download and install Node.js
-# Visit https://nodejs.org/ for installation instructions
+- **Node.js:** Download and install Node.js
+- **Visit https://nodejs.org/ for installation instructions**
 
-# MetaMask: Download MetaMask
+- **MetaMask:** Download MetaMask
 # Visit https://metamask.io/ to install the MetaMask browser extension
 
 # Installation
