@@ -1,4 +1,4 @@
-# Epic Card Wars 🃏
+# 🃏 Epic Card Wars
 
 #### Welcome to Epic Cards Wars!
 A decentralized strategic card game where players engage in battles using a variety of cards with unique abilities. The game emphasizes attack and defense mechanics, health points management, and the tactical use of Mana.
